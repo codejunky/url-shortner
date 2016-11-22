@@ -1,12 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const validator = require('validator');
+const path = require('path');
 
 const Url = require('./models/Url');
 
 const app = express();
 
 mongoose.connect('mongodb://fcc:Password1!@ds161487.mlab.com:61487/url-shortner');
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'index.html'));
+});
 
 app.get('/new/:url(*)', (req, res) => {
   const url = req.params.url;
